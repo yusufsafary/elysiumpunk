@@ -83,11 +83,11 @@ nav.mainnav a:hover{border-bottom-color:var(--red)}
     linear-gradient(rgba(20,19,16,.055) 1px,transparent 1px),
     linear-gradient(90deg,rgba(20,19,16,.055) 1px,transparent 1px);
   background-size:auto,28px 28px,28px 28px;
-  animation:heroDrift 24s linear infinite alternate;
+  animation:heroDrift 18s ease-in-out infinite alternate;
 }
 @keyframes heroDrift{
   from{background-position:0 0,0 0,0 0}
-  to{background-position:0 0,56px 28px,28px 56px}
+  to{background-position:140px -50px,84px 42px,42px 84px}
 }
 .h-line{display:block}
 .hero .kicker{
@@ -327,8 +327,8 @@ footer{background:var(--ink);color:var(--cream);padding:58px 0 0;margin-top:0}
 }
 .hero-face.center .tchip{background:var(--gold2);color:var(--ink)}
 @keyframes floaty{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
+  0%,100%{transform:translateY(0) rotate(-1.1deg)}
+  50%{transform:translateY(-8px) rotate(1.1deg)}
 }
 
 /* ---------- status board ---------- */
@@ -423,6 +423,8 @@ html.anim .rv.vis{opacity:1;transform:none}
   .hero-face{animation:none}
   .marquee-track{animation:none}
   .ptrack{animation:none}
+  .hero-pixels i{animation:none}
+  .hero-face{animation:none}
   .gallery figure,.typecard,.btn{transition:none}
 }
 
@@ -583,3 +585,29 @@ html.anim .lb-card{animation:lbIn .35s cubic-bezier(.22,.61,.21,1)}
 .ptile img{display:block;width:100%;height:158px;object-fit:cover;image-rendering:pixelated}
 .ptile figcaption{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:6px 9px;border-top:3px solid var(--ink)}
 @media (max-width:560px){.ptile{width:124px}.ptile img{height:124px}.ph-r{display:none}}
+
+/* Hero floating pixels: gold dust rising through the hero */
+.hero-pixels{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.hero .wrap,.hero .marquee{position:relative;z-index:1}
+.hero-pixels i{position:absolute;bottom:-14px;display:block;background:var(--gold);opacity:0;animation:pixelRise linear infinite}
+.hero-pixels i:nth-child(3n){background:var(--ink)}
+.hero-pixels i:nth-child(4n){background:var(--red)}
+.hero-pixels i:nth-child(1){left:6%;width:8px;height:8px;animation-duration:11s;animation-delay:0s}
+.hero-pixels i:nth-child(2){left:14%;width:6px;height:6px;animation-duration:14s;animation-delay:2.2s}
+.hero-pixels i:nth-child(3){left:23%;width:9px;height:9px;animation-duration:12s;animation-delay:4.5s}
+.hero-pixels i:nth-child(4){left:34%;width:6px;height:6px;animation-duration:15s;animation-delay:1.1s}
+.hero-pixels i:nth-child(5){left:45%;width:8px;height:8px;animation-duration:10.5s;animation-delay:5.6s}
+.hero-pixels i:nth-child(6){left:54%;width:7px;height:7px;animation-duration:13.5s;animation-delay:3.3s}
+.hero-pixels i:nth-child(7){left:63%;width:9px;height:9px;animation-duration:11.5s;animation-delay:6.4s}
+.hero-pixels i:nth-child(8){left:71%;width:6px;height:6px;animation-duration:14.5s;animation-delay:.7s}
+.hero-pixels i:nth-child(9){left:79%;width:8px;height:8px;animation-duration:12.5s;animation-delay:2.9s}
+.hero-pixels i:nth-child(10){left:86%;width:7px;height:7px;animation-duration:10s;animation-delay:4.1s}
+.hero-pixels i:nth-child(11){left:92%;width:6px;height:6px;animation-duration:15.5s;animation-delay:5.2s}
+.hero-pixels i:nth-child(12){left:40%;width:6px;height:6px;animation-duration:13s;animation-delay:7s}
+@keyframes pixelRise{
+  0%{transform:translate(0,0);opacity:0}
+  10%{opacity:.5}
+  50%{transform:translate(14px,-330px)}
+  88%{opacity:.45}
+  100%{transform:translate(-8px,-640px);opacity:0}
+}
