@@ -114,7 +114,7 @@ nav.mainnav a:hover{border-bottom-color:var(--red)}
 }
 .marquee-track{
   display:flex;gap:10px;width:max-content;will-change:transform;
-  animation:scrollx 40s linear infinite;
+  animation:scrollx 28s linear infinite;
 }
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee-track img{
@@ -422,6 +422,7 @@ html.anim .rv.vis{opacity:1;transform:none}
   .rv{opacity:1;transform:none;transition:none}
   .hero-face{animation:none}
   .marquee-track{animation:none}
+  .ptrack{animation:none}
   .gallery figure,.typecard,.btn{transition:none}
 }
 
@@ -568,3 +569,17 @@ html.anim .lb-card{animation:lbIn .35s cubic-bezier(.22,.61,.21,1)}
   html.anim .lb-card{animation:none}
   .fchip,.statuscard,.step,.gallery figure{transition:none}
 }
+
+/* Faces in motion: dual-direction parade band */
+.parade{background:var(--ink);border-block:3px solid var(--ink);padding:26px 0 30px;overflow:hidden}
+.parade-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:0 20px 18px;max-width:1180px;margin:0 auto}
+.ph-l{font-family:var(--f-disp);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.ph-r{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#B9B2A0}
+.prow{overflow:hidden;padding:5px 0}
+.ptrack{display:flex;gap:14px;width:max-content;will-change:transform;animation:scrollx 30s linear infinite}
+.prow.rev .ptrack{animation-direction:reverse;animation-duration:38s}
+.parade:hover .ptrack{animation-play-state:paused}
+.ptile{margin:0;width:158px;flex:none;background:var(--cream);border:3px solid var(--gold);box-shadow:5px 5px 0 rgba(0,0,0,.45)}
+.ptile img{display:block;width:100%;height:158px;object-fit:cover;image-rendering:pixelated}
+.ptile figcaption{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:6px 9px;border-top:3px solid var(--ink)}
+@media (max-width:560px){.ptile{width:124px}.ptile img{height:124px}.ph-r{display:none}}
