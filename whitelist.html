@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Whitelist Opens Soon: ELYSIUM PUNKS</title>
-<meta name="description" content="The ELYSIUM PUNKS whitelist has not opened yet. 1,000 spots, one free punk per wallet. Registration opens with the announcement on X.">
+<title>Whitelist Is Open: ELYSIUM PUNKS</title>
+<meta name="description" content="The ELYSIUM PUNKS whitelist is open. 1,000 guaranteed spots, one free punk per wallet. Do the three X tasks, leave your address, confirm on this page.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ELYSIUM PUNKS">
 <meta property="og:title" content="ELYSIUM PUNKS: 9,999 Punks Made It To Paradise">
-<meta property="og:description" content="Every face is picked by an on-chain seed: skin, hair, gold tooth, maybe a halo. 9,999 punks on the Elysium chain. Whitelist opens soon, public mint $3.50, reveal in 24 hours.">
+<meta property="og:description" content="Every face is picked by an on-chain seed: skin, hair, gold tooth, maybe a halo. 9,999 punks on the Elysium chain. Whitelist is open: 1,000 guaranteed spots, public mint $3.50, reveal in 24 hours.">
 <meta property="og:url" content="https://elysiumpunk.fun/">
 <meta property="og:image" content="https://elysiumpunk.fun/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ELYSIUM PUNKS: 9,999 Punks Made It To Paradise">
-<meta name="twitter:description" content="Every face is picked by an on-chain seed: skin, hair, gold tooth, maybe a halo. 9,999 punks on the Elysium chain. Whitelist opens soon, public mint $3.50, reveal in 24 hours.">
+<meta name="twitter:description" content="Every face is picked by an on-chain seed: skin, hair, gold tooth, maybe a halo. 9,999 punks on the Elysium chain. Whitelist is open: 1,000 guaranteed spots, public mint $3.50, reveal in 24 hours.">
 <meta name="twitter:image" content="https://elysiumpunk.fun/img/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
       <a href="whitelist.html">Whitelist</a>
       <a href="index.html#faq">FAQ</a>
       <a href="docs.html">Docs</a>
-      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X (TBA)</a>
+      <a href="https://x.com/elysiumpunkHQ" target="_blank" rel="noopener noreferrer">X @elysiumpunkHQ</a>
     </nav>
     <a class="btn small ink head-act" href="index.html">Back to site</a>
   </div>
@@ -46,14 +46,58 @@
 
 <section class="blk">
   <div class="wrap">
-    <p class="sec-tag">Whitelist registration</p>
-    <h2>Not open<br><span class="gold">yet.</span></h2>
-    <p class="lede">There are exactly 1,000 spots. Each one mints a single punk for free, aside from a flat $0.19 commission in the Elysium native token. That commission is a bot tax, nothing more. Registration opens the day we announce it on X. When it does, this page turns into the sign-up form: you leave your EVM address, do three quick tasks on X (follow, repost, comment), come back here to confirm, and get a confirmation code.</p>
-    <div class="wl-cta">
-      <button class="btn gold" type="button" disabled>Registration closed</button>
-      <a class="btn red" href="index.html">Back to paradise</a>
+    <p class="sec-tag">Whitelist registration · GTD</p>
+    <h2>Whitelist is<br><span class="gold">open.</span></h2>
+    <p class="lede">There are exactly 1,000 guaranteed spots, GTD for short. Each one mints a single punk for free, aside from a flat $0.19 commission in the Elysium native token. That commission is a bot tax, nothing more. First 1,000 verified entries take the spots, in the order they land. When the list fills, registration closes and the list goes on chain as a merkle root, so your spot is provable, not promised.</p>
+
+    <form class="formcard" id="wlForm" novalidate>
+      <div class="err" id="wlErr" role="alert"></div>
+      <div class="field">
+        <label for="xHandle">Your X username</label>
+        <input type="text" id="xHandle" name="x_handle" placeholder="@yourname" autocomplete="off" spellcheck="false">
+        <p class="hint">The account you did the tasks with. We cross-check it against the follow, the repost and the comment.</p>
+      </div>
+      <div class="field">
+        <label for="wallet">Your EVM wallet address</label>
+        <input type="text" id="wallet" name="wallet_address" placeholder="0x..." autocomplete="off" spellcheck="false">
+        <p class="hint">This exact wallet gets the free mint. One entry per wallet, and entries can't be edited later, so paste carefully.</p>
+      </div>
+      <div class="field">
+        <label>Three tasks on X, then tick them</label>
+        <label class="taskrow">
+          <input type="checkbox" id="tFollow">
+          <span><b>Follow</b><span>Follow <a href="https://x.com/elysiumpunkHQ" target="_blank" rel="noopener noreferrer">@elysiumpunkHQ on X</a>.</span></span>
+        </label>
+        <label class="taskrow">
+          <input type="checkbox" id="tRepost">
+          <span><b>Repost</b><span>Repost the pinned announcement on <a href="https://x.com/elysiumpunkHQ" target="_blank" rel="noopener noreferrer">our profile</a>.</span></span>
+        </label>
+        <label class="taskrow">
+          <input type="checkbox" id="tComment">
+          <span><b>Comment</b><span>Leave a comment under that same pinned post. Anything human.</span></span>
+        </label>
+      </div>
+      <div class="field">
+        <label for="captchaA">One human check</label>
+        <div class="captcha-row">
+          <span class="captcha-q" id="captchaQ">? + ? = ?</span>
+          <input type="text" id="captchaA" inputmode="numeric" autocomplete="off" placeholder="Answer">
+        </div>
+        <p class="hint">Bots are bad at being bored by arithmetic. People manage.</p>
+      </div>
+      <div class="hp" aria-hidden="true"><input type="text" id="hpField" name="company" tabindex="-1" autocomplete="off"></div>
+      <button class="btn gold" id="wlSubmit" type="submit">Claim my spot</button>
+      <p class="hint" style="margin-top:14px">1,000 guaranteed spots · First verified, first served · Duplicate wallets are discarded</p>
+    </form>
+
+    <div class="success" id="wlOk">
+      <h3>You're on the list.</h3>
+      <p>Your entry is in. Keep this confirmation code with your wallet address; if there's ever a question about your spot, this pair settles it.</p>
+      <div class="codebox" id="wlCode">EP-00000000</div>
+      <p>The mint date is announced on <a href="https://x.com/elysiumpunkHQ" target="_blank" rel="noopener noreferrer">X @elysiumpunkHQ</a> first. When mint day comes, this wallet mints one punk free, plus the flat $0.19 commission in the Elysium native token and gas in HYPE.</p>
     </div>
-    <p class="lede" style="margin-top:30px">Until that day there's no form here, no secret list, no early access for a fee. If someone tries to sell you a whitelist spot before the announcement, they're scamming you.</p>
+
+    <p class="lede" style="margin-top:30px">One warning, free of charge: spots are only ever handed out on this page. If someone tries to sell you a whitelist spot, or asks you to pay for "early registration" anywhere else, they're scamming you.</p>
   </div>
 </section>
 
@@ -107,5 +151,6 @@
   </div>
 </div>
 <script src="app.js?v=4"></script>
+<script src="whitelist.js?v=1"></script>
 </body>
 </html>
