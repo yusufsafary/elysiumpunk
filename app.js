@@ -214,15 +214,15 @@
     var TYPES = {
       mortal: {
         name: "Mortal", share: "About 70% of the collection",
-        desc: "The street, untouched. Human skin, human trouble, full attitude. Most punks arrive as they lived."
+        desc: "Showed up exactly as they were. Human skin, no halo, no laurel, no special treatment. Most punks land here."
       },
       blessed: {
         name: "Blessed", share: "About 27% of the collection",
-        desc: "Touched by the fields. A halo or a laurel marks the ones paradise noticed on the way in."
+        desc: "Something noticed them on the way in. These are the ones wearing a halo or a laurel."
       },
       saint: {
         name: "Saint", share: "About 3% of the collection",
-        desc: "Golden skin, floating halo, full canonisation. The rarest faces in paradise, and the loudest."
+        desc: "Golden skin and a halo, the full treatment. About 3 in every 100 seeds land here, so if yours does, yeah, it's a big deal."
       }
     };
     var lbImg = document.getElementById("lbImg");
@@ -283,6 +283,62 @@
       if (!TYPES[type]) { return; }
       img.addEventListener("click", function () {
         openLb(type, img.getAttribute("src"), "");
+      });
+    });
+  }
+
+  /* ---------- FAQ smooth accordion (progressive: native without JS) ---------- */
+  var faqItems = document.querySelectorAll(".faq details");
+  if (faqItems.length && !reduced) {
+    var faqBusy = false;
+    function faqFinish(det, panel) {
+      panel.style.height = "";
+      panel.style.overflow = "";
+      panel.style.transition = "";
+      faqBusy = false;
+    }
+    function faqOpen(det, panel) {
+      det.open = true;
+      var target = panel.scrollHeight;
+      panel.style.overflow = "hidden";
+      panel.style.height = "0px";
+      void panel.offsetHeight;
+      panel.style.transition = "height .28s ease";
+      panel.style.height = target + "px";
+      setTimeout(function () { faqFinish(det, panel); }, 320);
+    }
+    function faqClose(det, panel, done) {
+      panel.style.overflow = "hidden";
+      panel.style.height = panel.scrollHeight + "px";
+      void panel.offsetHeight;
+      panel.style.transition = "height .28s ease";
+      panel.style.height = "0px";
+      setTimeout(function () {
+        det.open = false;
+        faqFinish(det, panel);
+        if (done) { done(); }
+      }, 320);
+    }
+    each(faqItems, function (det) {
+      var summary = det.querySelector("summary");
+      var panel = det.querySelector(".a");
+      if (!summary || !panel) { return; }
+      summary.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (faqBusy) { return; }
+        if (det.open) {
+          faqBusy = true;
+          faqClose(det, panel);
+        } else {
+          var other = null;
+          each(faqItems, function (o) { if (o !== det && o.open) { other = o; } });
+          faqBusy = true;
+          if (other) {
+            faqClose(other, other.querySelector(".a"), function () { faqOpen(det, panel); });
+          } else {
+            faqOpen(det, panel);
+          }
+        }
       });
     });
   }
