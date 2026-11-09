@@ -243,7 +243,10 @@
       if (lbType) { lbType.textContent = d.name; }
       if (lbShare) { lbShare.textContent = d.share; }
       if (lbDesc) { lbDesc.textContent = d.desc; }
-      if (lbSeed) { lbSeed.textContent = seedLabel || ""; }
+      if (lbSeed) {
+        var m = /punk-(\d+)-/.exec(src || "");
+        lbSeed.textContent = m ? ("SEED " + m[1] + " · DRAWN BY THE COLLECTION GENERATOR") : (seedLabel || "");
+      }
       lastFocus = document.activeElement;
       prevOverflow = document.documentElement.style.overflow;
       document.documentElement.style.overflow = "hidden";
@@ -257,15 +260,26 @@
     }
     if (lbClose) { lbClose.addEventListener("click", closeLb); }
     if (lbBackdrop) { lbBackdrop.addEventListener("click", closeLb); }
+    var currentFig = null;
     document.addEventListener("keydown", function (e) {
-      if (!lb.hidden && (e.key === "Escape" || e.key === "Esc")) { closeLb(); }
+      if (lb.hidden) { return; }
+      if (e.key === "Escape" || e.key === "Esc") { closeLb(); return; }
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") { return; }
+      var vis = [];
+      each(tiles, function (t) { if (t.style.display !== "none") { vis.push(t); } });
+      if (!vis.length || !currentFig) { return; }
+      var idx = vis.indexOf(currentFig);
+      var nxt = vis[(idx + (e.key === "ArrowRight" ? 1 : -1) + vis.length) % vis.length];
+      if (nxt && nxt._openLb) { nxt._openLb(); }
     });
 
     each(tiles, function (fig) {
       function open() {
+        currentFig = fig;
         var img = fig.querySelector("img");
         openLb(fig.getAttribute("data-type"), img ? img.getAttribute("src") : "", "Sample face");
       }
+      fig._openLb = open;
       fig.addEventListener("click", open);
       fig.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {

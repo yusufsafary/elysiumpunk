@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 <link rel="icon" type="image/png" sizes="128x128" href="img/logo.png">
 <link rel="icon" type="image/svg+xml" href="img/logo.svg">
 </head>
@@ -33,6 +33,7 @@
       <a href="#paradise">Paradise</a>
       <a href="#status">Status</a>
       <a href="#types">Types</a>
+      <a href="#seedlab">Seed Machine</a>
       <a href="#how">Mint</a>
       <a href="#whitelist">Whitelist</a>
       <a href="#faq">FAQ</a>
@@ -226,9 +227,39 @@
   </div>
 </div>
 
+
+<section class="blk" id="seedlab">
+  <div class="wrap">
+    <p class="sec-tag">04 · Seed Machine</p>
+    <h2>Seed decides.<br><span class="gold">Watch it happen.</span></h2>
+    <p class="lede">This is the collection's own generator, running live in your browser, the same code path the contract uses at mint. Type any number and it draws the punk that seed produces. Roll 970 and you get the Saint from our homepage. Roll long enough at 3 in 100 odds and you will meet one by accident. At mint, the only difference is the seed comes from the chain, and nobody gets to choose it.</p>
+    <div class="seedlab">
+      <div class="sl-stage" id="slStage">
+        <canvas id="seedCanvas" width="480" height="480" aria-label="Generated punk face"></canvas>
+        <div class="sl-saint" id="slSaint" hidden>SAINT ROLLED · 3 IN 100</div>
+      </div>
+      <div class="sl-panel">
+        <div class="sl-read">
+          <div class="sl-chip"><span>Seed</span><b id="slSeed">970</b></div>
+          <div class="sl-chip"><span>Seed mod 1000</span><b id="slRoll">970</b></div>
+          <div class="sl-chip goldchip"><span>Type</span><b id="slType">Saint</b></div>
+        </div>
+        <p class="sl-traits" id="slTraits">Gold skin · Halo · Gold chain</p>
+        <div class="sl-controls">
+          <input type="number" id="seedInput" placeholder="Type a seed, any number" min="0" step="1">
+          <button class="btn ink" id="seedGo" type="button">Draw it</button>
+          <button class="btn gold" id="rollBtn" type="button">Roll a random seed</button>
+        </div>
+        <p class="sl-count">Rolled this visit: <b id="slCount">0</b> · Saints found: <b id="slSaints">0</b></p>
+        <p class="hint">Under 700 on the roll: Mortal. 700 to 969: Blessed. 970 and up: Saint. The machine has no favourites and neither does the contract.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="blk alt" id="how">
   <div class="wrap">
-    <p class="sec-tag">04 · How mint works</p>
+    <p class="sec-tag">05 · How mint works</p>
     <h2>Three steps<br><span class="gold">to paradise.</span></h2>
     <p class="lede">You mint here. This page, this wallet button, nowhere else. If you find a mint page for this collection on some other site, it's a scam and it's not ours.</p>
     <div class="steps rv">
@@ -253,7 +284,7 @@
 
 <section class="blk" id="whitelist">
   <div class="wrap">
-    <p class="sec-tag">05 · Whitelist</p>
+    <p class="sec-tag">06 · Whitelist</p>
     <h2>Whitelist is<br><span class="gold">open.</span></h2>
     <p class="lede">There are 1,000 spots and each one is good for exactly one free punk. Registration is open, and the sign-up form lives on the whitelist page. First 1,000 verified entries are guaranteed a spot. The process is short: give us your EVM address, do three things on X (follow, repost, comment), then come back and confirm on this site. One catch, if you can call it that: the free mint still charges a flat $0.19 commission in the Elysium native token. For a person that's nothing. For a bot farm it's a bar tab.</p>
     <span class="mnote mnote-wl" aria-hidden="true">1,000 spots. when they are gone, they are gone.</span>
@@ -266,7 +297,7 @@
 
 <section class="blk alt" id="faq">
   <div class="wrap">
-    <p class="sec-tag">06 · Questions</p>
+    <p class="sec-tag">07 · Questions</p>
     <h2>Questions from<br>the afterlife.</h2>
     <div class="faq rv">
       <details>
@@ -363,6 +394,7 @@
     <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
   </div>
 </div>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
+<script src="seedlab.js?v=1"></script>
 </body>
 </html>
