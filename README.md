@@ -50,3 +50,21 @@ only. Nothing here is deployed, no repo, no DNS changes.
 
 Also pending by design: the mint contract and wallet connect ship later; the
 mint button and Connect Wallet button are placeholders until then.
+
+## Upgrade 2026-11-09 (visual, features, security)
+
+- Sections renumbered: 01 Paradise, 02 Status Board (new), 03 Types (with a
+  12 face sample gallery), 04 How Mint Works (new), 05 Whitelist, 06 FAQ.
+- Hero gained a floating featured trio (Blessed, Saint, Mortal) with type
+  chips and a Share on X button. Header is now a blurred sticky bar with a
+  gold scroll progress hairline. Footer rebuilt with three link columns and
+  a Back to top button. Reveal on scroll animations throughout, all disabled
+  under prefers-reduced-motion.
+- All JavaScript lives in one shared `app.js` (marquee, connect placeholder,
+  cookie consent, reveal on scroll, scroll progress, back to top). No inline
+  scripts or inline handlers remain anywhere.
+- Every page carries a Content-Security-Policy meta tag and
+  `referrer: strict-origin-when-cross-origin`. External links use
+  rel="noopener noreferrer".
+- New `privacy.html` Privacy Policy, linked from every footer and the
+  sitemap. Cookie consent behavior unchanged (key `ep_cookie_consent`).
