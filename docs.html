@@ -128,5 +128,29 @@
   </div>
 </footer>
 
+
+<div class="cookiebar" id="cookieBar" role="dialog" aria-label="Cookie consent">
+  <h4>Cookies in paradise</h4>
+  <p>This site keeps things lean. We store one local preference to remember your cookie choice, and nothing tracks you for ads. Fonts load from Google Fonts, which may log your IP address. Read the <a href="cookies.html">Cookie Policy</a>.</p>
+  <div class="cb-btns">
+    <button class="btn gold" id="cookieAccept" type="button">Accept</button>
+    <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = "ep_cookie_consent";
+  var bar = document.getElementById("cookieBar");
+  function choice(){ try { return localStorage.getItem(KEY); } catch(e){ return "set"; } }
+  function save(v){ try { localStorage.setItem(KEY, v + ":" + new Date().toISOString().slice(0,10)); } catch(e){} }
+  window.EPCookies = {
+    open: function(){ bar.classList.add("show"); },
+    reset: function(){ try { localStorage.removeItem(KEY); } catch(e){} bar.classList.add("show"); }
+  };
+  if (!choice()){ setTimeout(function(){ bar.classList.add("show"); }, 700); }
+  document.getElementById("cookieAccept").addEventListener("click", function(){ save("accepted"); bar.classList.remove("show"); });
+  document.getElementById("cookieDecline").addEventListener("click", function(){ save("declined"); bar.classList.remove("show"); });
+})();
+</script>
 </body>
 </html>
