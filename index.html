@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>ELYSIUM PUNKS: 9,999 Punks Made It To Paradise</title>
 <meta name="description" content="ELYSIUM PUNKS is a 9,999 piece pixel punk collection on the Elysium chain. Street punks who reached the Elysian fields. Whitelist opens soon, public mint $3.50, reveal in 24 hours.">
 <meta property="og:type" content="website">
@@ -18,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="icon" href="img/punk-970-saint.png">
 </head>
 <body>
@@ -26,15 +28,19 @@
 <header>
   <div class="header-in">
     <a class="logo" href="index.html"><span class="dot"></span>ELYSIUM <em>PUNKS</em></a>
-    <nav class="mainnav">
-      <a href="#paradise">The Paradise</a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="#paradise">Paradise</a>
+      <a href="#status">Status</a>
       <a href="#types">Types</a>
+      <a href="#how">Mint</a>
+      <a href="#whitelist">Whitelist</a>
       <a href="#faq">FAQ</a>
       <a href="docs.html">Docs</a>
-      <a href="https://x.com/" target="_blank" rel="noopener">X (TBA)</a>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X (TBA)</a>
     </nav>
-    <button class="btn small ink" id="connectBtn" type="button">Connect Wallet</button>
+    <button class="btn small ink head-act" id="connectBtn" type="button">Connect Wallet</button>
   </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 </header>
 
 <div class="hero">
@@ -42,10 +48,25 @@
     <span class="kicker">On the Elysium chain · Gas in HYPE</span>
     <h1>9,999 punks<br>made it to<br><span class="gold">paradise.</span></h1>
     <p class="sub">Pixel punks from the street, reborn in the Elysian fields. Every face is generated from an on-chain seed. Mohawks meet halos. Gold teeth meet golden fields.</p>
+    <div class="hero-trio">
+      <figure class="hero-face d1">
+        <img src="img/punk-700-blessed.png" alt="Blessed punk sample face">
+        <figcaption><span class="tchip">Blessed</span></figcaption>
+      </figure>
+      <figure class="hero-face center d2">
+        <img src="img/punk-970-saint.png" alt="Saint punk sample face">
+        <figcaption><span class="tchip">Saint</span></figcaption>
+      </figure>
+      <figure class="hero-face d3">
+        <img src="img/punk-3-mortal.png" alt="Mortal punk sample face">
+        <figcaption><span class="tchip">Mortal</span></figcaption>
+      </figure>
+    </div>
     <div class="hero-cta">
       <button class="btn gold" type="button" disabled>Whitelist opens soon</button>
       <button class="btn" id="mintBtn" type="button" disabled>Mint opens soon</button>
       <a class="btn red" href="#types">Meet the types</a>
+      <a class="btn" href="https://twitter.com/intent/tweet?text=ELYSIUM%20PUNKS%3A%209%2C999%20pixel%20punks%20made%20it%20to%20paradise.%20Whitelist%20opens%20soon%2C%20mint%20on%20the%20Elysium%20chain.&amp;url=https%3A%2F%2Felysiumpunk.fun" target="_blank" rel="noopener noreferrer">Share on X</a>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
@@ -67,7 +88,7 @@
     <p class="sec-tag">01 / The Paradise</p>
     <h2>Street punks.<br><span class="gold">Golden fields.</span></h2>
     <p class="lede">They lived loud, died louder, and woke up somewhere better. The Elysian fields took the punks in, kept their attitude, and gilded the edges. ELYSIUM PUNKS is 9,999 pixel faces generated from on-chain seeds: no two alike, every one a mix of the gutter and the garden.</p>
-    <div class="cols">
+    <div class="cols rv">
       <div class="traitbox">
         <h3>From the street</h3>
         <p>The traits they brought with them. Raw, loud, unfiltered.</p>
@@ -98,12 +119,46 @@
   </div>
 </section>
 
-<section class="blk alt" id="types">
+<section class="blk alt" id="status">
   <div class="wrap">
-    <p class="sec-tag">02 / The Types</p>
+    <p class="sec-tag">02 / Status Board</p>
+    <h2>Where things<br><span class="gold">stand.</span></h2>
+    <p class="lede">No countdown theatre, no invented dates. This board only moves when something real happens, and every change is announced on X first.</p>
+    <div class="statusgrid rv">
+      <article class="statuscard">
+        <span class="status-pill">Today</span>
+        <span class="s-label">Elysium mainnet</span>
+        <span class="s-value">Launching today</span>
+        <p>Monday 9 November 2026. The chain goes live first, the punk contracts follow on this site.</p>
+      </article>
+      <article class="statuscard">
+        <span class="status-pill">Soon</span>
+        <span class="s-label">Whitelist</span>
+        <span class="s-value">Opens soon</span>
+        <p>1,000 spots, one free mint per whitelist wallet. Registration opens with the announcement on X.</p>
+      </article>
+      <article class="statuscard">
+        <span class="status-pill">TBA</span>
+        <span class="s-label">Mint</span>
+        <span class="s-value">To be announced</span>
+        <p>Whitelist mints free. Public mint is $3.50 per punk in the chain native token, gas in HYPE.</p>
+      </article>
+      <article class="statuscard">
+        <span class="status-pill">24H</span>
+        <span class="s-label">Reveal</span>
+        <span class="s-value">24 hours after mint</span>
+        <p>Every punk stays hidden until the reveal moment, then all faces and types show at once.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="types">
+  <div class="wrap">
+    <p class="sec-tag">03 / The Types</p>
     <h2>Three ways<br>to arrive.</h2>
     <p class="lede">Your seed decides who you were and what paradise made of you. The type locks in at mint and shows itself at reveal, exactly 24 hours later.</p>
-    <div class="typegrid">
+    <div class="typegrid rv">
       <article class="typecard">
         <img src="img/punk-3-mortal.png" alt="Mortal punk sample face">
         <div class="tc-in">
@@ -129,15 +184,56 @@
         </div>
       </article>
     </div>
+
+    <p class="sec-tag gal-head">Sample faces</p>
+    <div class="gallery rv">
+      <figure class="saint"><img src="img/punk-970-saint.png" alt="Saint punk sample face" loading="lazy"><figcaption>Saint<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed"><img src="img/punk-700-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-1-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed"><img src="img/punk-701-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-2-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-3-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed"><img src="img/punk-702-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-4-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-5-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-6-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-7-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure><img src="img/punk-8-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="blk alt" id="how">
+  <div class="wrap">
+    <p class="sec-tag">04 / How Mint Works</p>
+    <h2>Three steps<br><span class="gold">to paradise.</span></h2>
+    <p class="lede">Minting happens here, on this website, with a normal EVM wallet. No other site, no other link. If a mint page for this collection lives anywhere else, it is not us.</p>
+    <div class="steps rv">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Connect your wallet</h3>
+        <p>Connect a normal EVM wallet on this site and switch it to the Elysium chain. Gas on Elysium is paid in HYPE.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Mint your punk</h3>
+        <p>Whitelist wallets mint 1 punk free. Public mint is $3.50 per punk, paid in the native token of the Elysium chain.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Reveal and trade</h3>
+        <p>Your punk reveals exactly 24 hours after mint. After the reveal, secondary trading happens on OpenSea.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="blk" id="whitelist">
   <div class="wrap">
-    <p class="sec-tag">03 / Whitelist</p>
+    <p class="sec-tag">05 / Whitelist</p>
     <h2>Whitelist<br><span class="gold">opens soon.</span></h2>
     <p class="lede">1,000 spots. One free punk per whitelist wallet. Registration is not open yet: it opens with the announcement on X, and this page will carry the sign-up the moment it does. When it opens, you will submit your EVM address, complete three tasks on X (follow, repost, comment), and confirm here on the site. Humans only, bots get nothing.</p>
-    <div class="wl-cta">
+    <div class="wl-cta rv">
       <button class="btn gold" type="button" disabled>Registration closed</button>
       <span class="wl-note">1,000 spots · Free mint: 1 per whitelist wallet</span>
     </div>
@@ -146,9 +242,9 @@
 
 <section class="blk alt" id="faq">
   <div class="wrap">
-    <p class="sec-tag">04 / FAQ</p>
+    <p class="sec-tag">06 / FAQ</p>
     <h2>Questions from<br>the afterlife.</h2>
-    <div class="faq">
+    <div class="faq rv">
       <details>
         <summary>When does mint open? <span class="plus">+</span></summary>
         <p class="a">Mint opens after the Elysium mainnet launch. The exact date and time will be announced on X and on this page. The mint button stays in its "opens soon" state until contracts are live.</p>
@@ -183,48 +279,41 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
-    <div class="cols">
-      <p>9,999 pixel punks in the Elysian fields.<br>elysiumpunk.fun</p>
-      <p>
-        <a href="#paradise">The Paradise</a><br>
-        <a href="#types">Types</a><br>
-        <a href="#faq">FAQ</a>
-      <a href="docs.html">Docs</a><br>
-        <a href="https://x.com/" target="_blank" rel="noopener">X (handle TBA)</a>
-      </p>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
+        <p class="foot-tag">9,999 pixel punks in the Elysian fields.</p>
+        <p class="foot-line">Mint on this site, trade on OpenSea.<br>elysiumpunk.fun</p>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div class="foot-col">
+          <h5>Collection</h5>
+          <a href="#paradise">The Paradise</a>
+          <a href="#types">Types</a>
+          <a href="docs.html">Docs</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="whitelist.html">Whitelist status</a>
+          <a href="cookies.html">Cookie Policy</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+        <div class="foot-col">
+          <h5>Chain</h5>
+          <span>Elysium chain</span>
+          <span>Gas in HYPE</span>
+          <span>Market on OpenSea</span>
+        </div>
+      </nav>
     </div>
-    <div class="fineprint">
+    <div class="foot-bar">
       <span>Copyright 2026 ELYSIUM PUNKS. All rights reserved.</span>
       <span>Not affiliated with CryptoPunks or Larva Labs.</span>
+      <button class="to-top" id="toTop" type="button">Back to top</button>
     </div>
   </div>
 </footer>
-
-<script>
-(function(){
-  // Marquee: two copies of the face row for a seamless loop.
-  var faces = ["punk-1-mortal.png","punk-700-blessed.png","punk-2-mortal.png","punk-3-mortal.png",
-    "punk-701-blessed.png","punk-4-mortal.png","punk-970-saint.png","punk-5-mortal.png",
-    "punk-11-mortal.png","punk-6-mortal.png","punk-702-blessed.png","punk-12-mortal.png",
-    "punk-7-mortal.png","punk-13-mortal.png","punk-8-mortal.png","punk-14-mortal.png",
-    "punk-15-mortal.png","punk-16-mortal.png","punk-17-mortal.png","punk-18-mortal.png"];
-  var track = document.getElementById("marqueeTrack");
-  var html = "";
-  for (var r = 0; r < 2; r++){
-    for (var i = 0; i < faces.length; i++){
-      html += '<img src="img/' + faces[i] + '" alt="" loading="lazy">';
-    }
-  }
-  track.innerHTML = html;
-
-  // Connect wallet: placeholder until contracts ship.
-  document.getElementById("connectBtn").addEventListener("click", function(){
-    this.textContent = "Wallet connect at mint";
-    setTimeout(function(){ document.getElementById("connectBtn").textContent = "Connect Wallet"; }, 2200);
-  });
-})();
-</script>
 
 <div class="cookiebar" id="cookieBar" role="dialog" aria-label="Cookie consent">
   <h4>Cookies in paradise</h4>
@@ -234,20 +323,6 @@
     <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
   </div>
 </div>
-<script>
-(function(){
-  var KEY = "ep_cookie_consent";
-  var bar = document.getElementById("cookieBar");
-  function choice(){ try { return localStorage.getItem(KEY); } catch(e){ return "set"; } }
-  function save(v){ try { localStorage.setItem(KEY, v + ":" + new Date().toISOString().slice(0,10)); } catch(e){} }
-  window.EPCookies = {
-    open: function(){ bar.classList.add("show"); },
-    reset: function(){ try { localStorage.removeItem(KEY); } catch(e){} bar.classList.add("show"); }
-  };
-  if (!choice()){ setTimeout(function(){ bar.classList.add("show"); }, 700); }
-  document.getElementById("cookieAccept").addEventListener("click", function(){ save("accepted"); bar.classList.remove("show"); });
-  document.getElementById("cookieDecline").addEventListener("click", function(){ save("declined"); bar.classList.remove("show"); });
-})();
-</script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
