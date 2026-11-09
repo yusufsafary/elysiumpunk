@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docs: ELYSIUM PUNKS</title>
+<meta name="description" content="ELYSIUM PUNKS collection docs: types and odds, trait system, mint rules, reveal, chain details and secondary trading on OpenSea.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ELYSIUM PUNKS">
+<meta property="og:title" content="ELYSIUM PUNKS Docs">
+<meta property="og:description" content="Types and odds, trait system, mint rules and reveal mechanics for the 9,999 pixel punks on the Elysium chain.">
+<meta property="og:url" content="https://elysiumpunk.fun/docs.html">
+<meta property="og:image" content="https://elysiumpunk.fun/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ELYSIUM PUNKS Docs">
+<meta name="twitter:description" content="Types and odds, trait system, mint rules and reveal mechanics for the 9,999 pixel punks on the Elysium chain.">
+<meta name="twitter:image" content="https://elysiumpunk.fun/img/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="img/punk-970-saint.png">
+<style>
+.doctable{width:100%;border:3px solid var(--ink);border-collapse:collapse;margin-top:26px;background:var(--cream)}
+.doctable th,.doctable td{border:2px solid var(--ink);padding:12px 14px;text-align:left;font-size:15.5px}
+.doctable th{font-family:var(--pix);text-transform:uppercase;font-size:13px;background:var(--ink);color:var(--gold2)}
+.docsec{margin-top:44px}
+.docsec p{max-width:760px;margin-top:12px}
+.docsec ul{max-width:760px;margin:12px 0 0 20px}
+.docsec li{margin-bottom:7px}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:3px solid var(--ink);margin-top:26px}
+.kv div{padding:14px 16px;border:1.5px solid var(--ink)}
+.kv b{font-family:var(--pix);font-size:12px;text-transform:uppercase;letter-spacing:1px;display:block;color:var(--red)}
+.kv span{font-size:16.5px}
+@media (max-width:860px){.kv{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-in">
+    <a class="logo" href="index.html"><span class="dot"></span>ELYSIUM <em>PUNKS</em></a>
+    <nav class="mainnav">
+      <a href="index.html#paradise">The Paradise</a>
+      <a href="index.html#types">Types</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://x.com/" target="_blank" rel="noopener">X (TBA)</a>
+    </nav>
+    <a class="btn small ink" href="index.html">Back to site</a>
+  </div>
+</header>
+
+<section class="blk">
+  <div class="wrap">
+    <p class="sec-tag">Collection docs</p>
+    <h2>How paradise<br><span class="gold">works.</span></h2>
+    <p class="lede">Everything about the collection in one page: what the punks are, how the types and traits are decided, how mint and reveal run, and where trading happens.</p>
+
+    <div class="kv">
+      <div><b>Collection</b><span>ELYSIUM PUNKS</span></div>
+      <div><b>Supply</b><span>9,999</span></div>
+      <div><b>Chain</b><span>Elysium (Kinetiq L2 on Hyperliquid)</span></div>
+      <div><b>Gas token</b><span>HYPE</span></div>
+      <div><b>Whitelist</b><span>1,000 spots, 1 free mint per wallet</span></div>
+      <div><b>Public mint</b><span>$3.50 per punk, paid in the chain native token</span></div>
+      <div><b>Reveal</b><span>Exactly 24 hours after mint</span></div>
+      <div><b>Secondary market</b><span>OpenSea</span></div>
+      <div><b>Contract</b><span>To be announced at mint</span></div>
+      <div><b>Public per wallet limit</b><span>To be announced with the mint date</span></div>
+    </div>
+
+    <div class="docsec">
+      <p class="sec-tag">Types and odds</p>
+      <p>Every punk is generated from an on-chain seed at mint. The seed locks the type first, then the traits. Odds below are the design odds of the generator.</p>
+      <table class="doctable">
+        <tr><th>Type</th><th>Share</th><th>Approx. count</th><th>Marks</th></tr>
+        <tr><td>Mortal</td><td>About 70%</td><td>About 7,000</td><td>Human skin, street traits only</td></tr>
+        <tr><td>Blessed</td><td>About 27%</td><td>About 2,700</td><td>Halo or laurel</td></tr>
+        <tr><td>Saint</td><td>About 3%</td><td>About 300</td><td>Golden skin and a halo</td></tr>
+      </table>
+    </div>
+
+    <div class="docsec">
+      <p class="sec-tag">Trait system</p>
+      <p>Each face mixes two worlds. Street traits come from the life the punk lived: mohawk, spikes, long hair, flat top, cap, shades, gold frame glasses, gold tooth, grin, cigarette, beard, gold earring, gold chain. Paradise traits come from the fields: halo, laurel, golden skin, and the backgrounds of gold fields, paradise sky, street wall, neon alley and marble. No two of the 9,999 faces are alike.</p>
+    </div>
+
+    <div class="docsec">
+      <p class="sec-tag">Mint rules</p>
+      <ul>
+        <li>Mint happens on this website with a normal EVM wallet connected to the Elysium chain.</li>
+        <li>Whitelist wallets mint 1 punk free. There are exactly 1,000 whitelist spots.</li>
+        <li>Whitelist registration opens with the announcement on X: submit an EVM address, complete three tasks (follow, repost, comment), then confirm on this site and receive a confirmation code.</li>
+        <li>Public mint is $3.50 per punk, paid in the native token of the Elysium chain. Gas is paid in HYPE.</li>
+        <li>The mint date and the public per wallet limit are announced on X and on this page.</li>
+      </ul>
+    </div>
+
+    <div class="docsec">
+      <p class="sec-tag">Reveal</p>
+      <p>Faces stay hidden after mint. Exactly 24 hours after mint, every punk reveals at once: face, type and traits become public together, for the whole collection at the same moment.</p>
+    </div>
+
+    <div class="docsec">
+      <p class="sec-tag">Trading</p>
+      <p>Secondary trading happens on OpenSea once the collection is live there after reveal. This website is the only place to mint. Anyone selling mints or whitelist spots anywhere else before the official announcement is not us.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
+    <div class="cols">
+      <p>9,999 pixel punks in the Elysian fields.<br>elysiumpunk.fun</p>
+      <p>
+        <a href="index.html#paradise">The Paradise</a><br>
+        <a href="index.html#types">Types</a><br>
+        <a href="index.html#faq">FAQ</a><br>
+        <a href="https://x.com/" target="_blank" rel="noopener">X (handle TBA)</a>
+      </p>
+    </div>
+    <div class="fineprint">
+      <span>Copyright 2026 ELYSIUM PUNKS. All rights reserved.</span>
+      <span>Not affiliated with CryptoPunks or Larva Labs.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
