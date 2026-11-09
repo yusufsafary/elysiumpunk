@@ -3,19 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>404: Lost in Paradise | ELYSIUM PUNKS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=2">
 <link rel="icon" href="/img/punk-970-saint.png">
 </head>
 <body>
 <header>
   <div class="header-in">
     <a class="logo" href="/index.html"><span class="dot"></span>ELYSIUM <em>PUNKS</em></a>
-    <a class="btn small ink" href="/index.html">Back to site</a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="/index.html#paradise">Paradise</a>
+      <a href="/index.html#status">Status</a>
+      <a href="/index.html#types">Types</a>
+      <a href="/index.html#how">Mint</a>
+      <a href="/whitelist.html">Whitelist</a>
+      <a href="/index.html#faq">FAQ</a>
+      <a href="/docs.html">Docs</a>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X (TBA)</a>
+    </nav>
+    <a class="btn small ink head-act" href="/index.html">Back to site</a>
   </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 </header>
 <section class="blk">
   <div class="wrap">
@@ -30,12 +43,41 @@
 </section>
 <footer>
   <div class="wrap">
-    <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
-    <div class="fineprint">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
+        <p class="foot-tag">9,999 pixel punks in the Elysian fields.</p>
+        <p class="foot-line">Mint on this site, trade on OpenSea.<br>elysiumpunk.fun</p>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div class="foot-col">
+          <h5>Collection</h5>
+          <a href="/index.html#paradise">The Paradise</a>
+          <a href="/index.html#types">Types</a>
+          <a href="/docs.html">Docs</a>
+          <a href="/index.html#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="/whitelist.html">Whitelist status</a>
+          <a href="/cookies.html">Cookie Policy</a>
+          <a href="/privacy.html">Privacy</a>
+        </div>
+        <div class="foot-col">
+          <h5>Chain</h5>
+          <span>Elysium chain</span>
+          <span>Gas in HYPE</span>
+          <span>Market on OpenSea</span>
+        </div>
+      </nav>
+    </div>
+    <div class="foot-bar">
       <span>Copyright 2026 ELYSIUM PUNKS. All rights reserved.</span>
       <span>Not affiliated with CryptoPunks or Larva Labs.</span>
+      <button class="to-top" id="toTop" type="button">Back to top</button>
     </div>
   </div>
 </footer>
+<script src="/app.js?v=2"></script>
 </body>
 </html>
