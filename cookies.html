@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Cookie Policy: ELYSIUM PUNKS</title>
 <meta name="description" content="Cookie Policy for elysiumpunk.fun: what this site stores, what it does not, and how to change your choice.">
 <meta property="og:type" content="website">
@@ -18,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="icon" href="img/punk-970-saint.png">
 <style>
 .doctable{width:100%;border:3px solid var(--ink);border-collapse:collapse;margin-top:26px;background:var(--cream)}
@@ -33,15 +35,19 @@
 <header>
   <div class="header-in">
     <a class="logo" href="index.html"><span class="dot"></span>ELYSIUM <em>PUNKS</em></a>
-    <nav class="mainnav">
-      <a href="index.html#paradise">The Paradise</a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="index.html#paradise">Paradise</a>
+      <a href="index.html#status">Status</a>
       <a href="index.html#types">Types</a>
+      <a href="index.html#how">Mint</a>
+      <a href="whitelist.html">Whitelist</a>
       <a href="index.html#faq">FAQ</a>
       <a href="docs.html">Docs</a>
-      <a href="https://x.com/" target="_blank" rel="noopener">X (TBA)</a>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X (TBA)</a>
     </nav>
-    <a class="btn small ink" href="index.html">Back to site</a>
+    <a class="btn small ink head-act" href="index.html">Back to site</a>
   </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 </header>
 
 <section class="blk">
@@ -68,7 +74,7 @@
       <p class="sec-tag">Your choice</p>
       <p>Accept or decline on the banner, either way the site works. Declining changes nothing today beyond the banner remembering your answer. You can change your choice at any time with the button below, or by clearing site data for elysiumpunk.fun in your browser settings.</p>
       <div class="wl-cta">
-        <button class="btn gold" type="button" onclick="window.EPCookies && EPCookies.reset()">Change my cookie choice</button>
+        <button class="btn gold" type="button" id="cookieChangeBtn">Change my cookie choice</button>
       </div>
     </div>
 
@@ -81,21 +87,38 @@
 
 <footer>
   <div class="wrap">
-    <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
-    <div class="cols">
-      <p>9,999 pixel punks in the Elysian fields.<br>elysiumpunk.fun</p>
-      <p>
-        <a href="index.html#paradise">The Paradise</a><br>
-        <a href="index.html#types">Types</a><br>
-        <a href="index.html#faq">FAQ</a><br>
-        <a href="docs.html">Docs</a><br>
-        <a href="https://x.com/" target="_blank" rel="noopener">X (handle TBA)</a><br>
-        <a href="cookies.html">Cookie Policy</a>
-      </p>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
+        <p class="foot-tag">9,999 pixel punks in the Elysian fields.</p>
+        <p class="foot-line">Mint on this site, trade on OpenSea.<br>elysiumpunk.fun</p>
+      </div>
+      <nav class="foot-cols" aria-label="Footer">
+        <div class="foot-col">
+          <h5>Collection</h5>
+          <a href="index.html#paradise">The Paradise</a>
+          <a href="index.html#types">Types</a>
+          <a href="docs.html">Docs</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="whitelist.html">Whitelist status</a>
+          <a href="cookies.html">Cookie Policy</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+        <div class="foot-col">
+          <h5>Chain</h5>
+          <span>Elysium chain</span>
+          <span>Gas in HYPE</span>
+          <span>Market on OpenSea</span>
+        </div>
+      </nav>
     </div>
-    <div class="fineprint">
+    <div class="foot-bar">
       <span>Copyright 2026 ELYSIUM PUNKS. All rights reserved.</span>
       <span>Not affiliated with CryptoPunks or Larva Labs.</span>
+      <button class="to-top" id="toTop" type="button">Back to top</button>
     </div>
   </div>
 </footer>
@@ -109,20 +132,6 @@
     <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
   </div>
 </div>
-<script>
-(function(){
-  var KEY = "ep_cookie_consent";
-  var bar = document.getElementById("cookieBar");
-  function choice(){ try { return localStorage.getItem(KEY); } catch(e){ return "set"; } }
-  function save(v){ try { localStorage.setItem(KEY, v + ":" + new Date().toISOString().slice(0,10)); } catch(e){} }
-  window.EPCookies = {
-    open: function(){ bar.classList.add("show"); },
-    reset: function(){ try { localStorage.removeItem(KEY); } catch(e){} bar.classList.add("show"); }
-  };
-  if (!choice()){ setTimeout(function(){ bar.classList.add("show"); }, 700); }
-  document.getElementById("cookieAccept").addEventListener("click", function(){ save("accepted"); bar.classList.remove("show"); });
-  document.getElementById("cookieDecline").addEventListener("click", function(){ save("declined"); bar.classList.remove("show"); });
-})();
-</script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
