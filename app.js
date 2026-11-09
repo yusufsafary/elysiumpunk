@@ -63,15 +63,7 @@
     track.appendChild(frag);
   }
 
-  /* ---------- connect wallet placeholder ---------- */
-  var connectBtn = document.getElementById("connectBtn");
-  if (connectBtn) {
-    connectBtn.addEventListener("click", function () {
-      var b = this;
-      b.textContent = "Wallet connect at mint";
-      setTimeout(function () { b.textContent = "Connect Wallet"; }, 2200);
-    });
-  }
+  /* connect wallet is handled by mint.js on the index page */
 
   /* ---------- cookie consent ---------- */
   var bar = document.getElementById("cookieBar");

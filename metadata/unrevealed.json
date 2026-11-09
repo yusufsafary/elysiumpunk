@@ -1,0 +1,8 @@
+{
+  "name": "Elysium Punk — Unrevealed",
+  "description": "This punk is still in the dark. Its face was fixed by an on-chain seed at mint and reveals exactly 24 hours later.",
+  "image": "https://elysiumpunk.fun/img/unrevealed.svg",
+  "attributes": [
+    { "trait_type": "Status", "value": "Unrevealed" }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://rpc.elyscan.live; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>ELYSIUM PUNKS: 9,999 Punks Made It To Paradise</title>
 <meta name="description" content="9,999 pixel punks on the Elysium chain, each one generated from an on-chain seed. Whitelist is open, 1,000 guaranteed spots, public mint $3.50, reveal 24 hours after mint.">
@@ -69,7 +69,7 @@
     </div>
     <div class="hero-cta hi" style="--d:780ms">
       <a class="btn gold" href="whitelist.html">Join the whitelist</a>
-      <button class="btn" id="mintBtn" type="button" disabled>Mint opens soon</button>
+      <button class="btn" id="mintBtn" type="button">Mint a punk</button>
       <a class="btn red" href="#types">Meet the types</a>
       <a class="btn" href="https://twitter.com/intent/tweet?text=ELYSIUM%20PUNKS%3A%209%2C999%20pixel%20punks%20made%20it%20to%20paradise.%20Whitelist%20is%20open%2C%201%2C000%20guaranteed%20spots%2C%20mint%20on%20the%20Elysium%20chain.&amp;url=https%3A%2F%2Felysiumpunk.fun" target="_blank" rel="noopener noreferrer">Share on X</a>
     </div>
@@ -149,10 +149,10 @@
         <p>1,000 spots, one free mint each. The free mint carries a flat $0.19 commission in the Elysium native token, which is how we keep the bots honest. Registration is open now on the whitelist page, first come first served.</p>
       </article>
       <article class="statuscard">
-        <span class="status-pill">TBA</span>
+        <span class="status-pill">Live</span>
         <span class="s-label">Mint</span>
-        <span class="s-value">To be announced</span>
-        <p>Public mint is $3.50 a punk in the chain's native token, gas in HYPE. The date lands once the chain is up, not before.</p>
+        <span class="s-value">Public mint is open</span>
+        <p>Mint from this page with your wallet: $3.50 a punk in the chain's native token (HYPE), plus gas. Your face reveals 24 hours after you mint.</p>
       </article>
       <article class="statuscard">
         <span class="status-pill">24H</span>
@@ -279,6 +279,18 @@
         <h3>Reveal and trade</h3>
         <p>You wait a day. Your punk reveals exactly 24 hours after you mint, and after that it can change hands on OpenSea.</p>
       </div>
+    </div>
+    <div class="step rv" id="mintPanel" style="margin-top:26px">
+      <h3>Public mint is live</h3>
+      <p id="mintCount">Reading the chain…</p>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0">
+        <button class="btn small ink" id="qtyMinus" type="button" aria-label="One fewer">−</button>
+        <b id="qtyVal" style="font-size:24px;min-width:38px;text-align:center">1</b>
+        <button class="btn small ink" id="qtyPlus" type="button" aria-label="One more">+</button>
+        <span id="mintTotal"></span>
+      </div>
+      <button class="btn gold" id="mintGo" type="button">Connect and mint</button>
+      <p id="mintStatus" style="font-family:'Space Mono',monospace;font-size:13px;margin-top:14px"></p>
     </div>
   </div>
 </section>
@@ -412,7 +424,8 @@
     <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
   </div>
 </div>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 <script src="seedlab.js?v=1"></script>
+<script src="mint.js?v=1"></script>
 </body>
 </html>
