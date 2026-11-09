@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elysiumpunk.fun/sitemap.xml
