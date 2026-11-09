@@ -20,14 +20,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
-<link rel="icon" href="img/punk-970-saint.png">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="icon" type="image/png" sizes="128x128" href="img/logo.png">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 </head>
 <body>
 
 <header>
   <div class="header-in">
-    <a class="logo" href="index.html"><span class="dot"></span>ELYSIUM <em>PUNKS</em></a>
+    <a class="logo" href="index.html"><img class="logo-mark" src="img/logo.svg" alt="" width="30" height="30">ELYSIUM <em>PUNKS</em></a>
     <nav class="mainnav" aria-label="Main">
       <a href="#paradise">Paradise</a>
       <a href="#status">Status</a>
@@ -45,24 +46,24 @@
 
 <div class="hero">
   <div class="wrap">
-    <span class="kicker">On the Elysium chain · Gas in HYPE</span>
-    <h1>9,999 punks<br>made it to<br><span class="gold">paradise.</span></h1>
-    <p class="sub">Pixel punks from the street, reborn in the Elysian fields. Every face is generated from an on-chain seed. Mohawks meet halos. Gold teeth meet golden fields.</p>
+    <span class="kicker hi" style="--d:0ms">On the Elysium chain · Gas in HYPE</span>
+    <h1><span class="h-line hi" style="--d:90ms">9,999 punks</span><span class="h-line hi" style="--d:180ms">made it to</span><span class="h-line hi" style="--d:270ms"><span class="gold">paradise.</span></span></h1>
+    <p class="sub hi" style="--d:390ms">Pixel punks from the street, reborn in the Elysian fields. Every face is generated from an on-chain seed. Mohawks meet halos. Gold teeth meet golden fields.</p>
     <div class="hero-trio">
-      <figure class="hero-face d1">
+      <figure class="hero-face d1 hi" style="--d:500ms">
         <img src="img/punk-700-blessed.png" alt="Blessed punk sample face">
         <figcaption><span class="tchip">Blessed</span></figcaption>
       </figure>
-      <figure class="hero-face center d2">
+      <figure class="hero-face center d2 hi" style="--d:580ms">
         <img src="img/punk-970-saint.png" alt="Saint punk sample face">
         <figcaption><span class="tchip">Saint</span></figcaption>
       </figure>
-      <figure class="hero-face d3">
+      <figure class="hero-face d3 hi" style="--d:660ms">
         <img src="img/punk-3-mortal.png" alt="Mortal punk sample face">
         <figcaption><span class="tchip">Mortal</span></figcaption>
       </figure>
     </div>
-    <div class="hero-cta">
+    <div class="hero-cta hi" style="--d:780ms">
       <button class="btn gold" type="button" disabled>Whitelist opens soon</button>
       <button class="btn" id="mintBtn" type="button" disabled>Mint opens soon</button>
       <a class="btn red" href="#types">Meet the types</a>
@@ -76,9 +77,9 @@
 
 <div class="stats">
   <div class="stats-in">
-    <div class="stat"><b>9,999</b><span>Punks</span></div>
+    <div class="stat"><b data-count="9999">9,999</b><span>Punks</span></div>
     <div class="stat"><b>3</b><span>Types</span></div>
-    <div class="stat"><b>1,000</b><span>Whitelist spots</span></div>
+    <div class="stat"><b data-count="1000">1,000</b><span>Whitelist spots</span></div>
     <div class="stat"><b>24H</b><span>Reveal after mint</span></div>
   </div>
 </div>
@@ -186,19 +187,25 @@
     </div>
 
     <p class="sec-tag gal-head">Sample faces</p>
+    <div class="gal-filters" role="group" aria-label="Filter sample faces">
+      <button class="fchip on" type="button" data-filter="all">All</button>
+      <button class="fchip" type="button" data-filter="mortal">Mortal</button>
+      <button class="fchip" type="button" data-filter="blessed">Blessed</button>
+      <button class="fchip" type="button" data-filter="saint">Saint</button>
+    </div>
     <div class="gallery rv">
-      <figure class="saint"><img src="img/punk-970-saint.png" alt="Saint punk sample face" loading="lazy"><figcaption>Saint<span class="g-dot"></span></figcaption></figure>
-      <figure class="blessed"><img src="img/punk-700-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-1-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure class="blessed"><img src="img/punk-701-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-2-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-3-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure class="blessed"><img src="img/punk-702-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-4-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-5-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-6-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-7-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
-      <figure><img src="img/punk-8-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure class="saint" data-type="saint" tabindex="0" role="button" aria-label="View Saint sample face"><img src="img/punk-970-saint.png" alt="Saint punk sample face" loading="lazy"><figcaption>Saint<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed" data-type="blessed" tabindex="0" role="button" aria-label="View Blessed sample face"><img src="img/punk-700-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-1-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed" data-type="blessed" tabindex="0" role="button" aria-label="View Blessed sample face"><img src="img/punk-701-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-2-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-3-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure class="blessed" data-type="blessed" tabindex="0" role="button" aria-label="View Blessed sample face"><img src="img/punk-702-blessed.png" alt="Blessed punk sample face" loading="lazy"><figcaption>Blessed<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-4-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-5-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-6-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-7-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
+      <figure data-type="mortal" tabindex="0" role="button" aria-label="View Mortal sample face"><img src="img/punk-8-mortal.png" alt="Mortal punk sample face" loading="lazy"><figcaption>Mortal<span class="g-dot"></span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -281,7 +288,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <div class="foot-logo">ELYSIUM <em>PUNKS</em></div>
+        <div class="foot-logo"><img class="logo-mark" src="img/logo.svg" alt="" width="34" height="34">ELYSIUM <em>PUNKS</em></div>
         <p class="foot-tag">9,999 pixel punks in the Elysian fields.</p>
         <p class="foot-line">Mint on this site, trade on OpenSea.<br>elysiumpunk.fun</p>
       </div>
@@ -315,6 +322,20 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="lbType">
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+  <figure class="lb-card">
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+    <img id="lbImg" src="" alt="">
+    <figcaption>
+      <span class="lb-type" id="lbType">Mortal</span>
+      <span class="lb-share" id="lbShare">About 70% of the collection</span>
+      <p class="lb-desc" id="lbDesc"></p>
+      <span class="lb-seed" id="lbSeed">Sample face</span>
+    </figcaption>
+  </figure>
+</div>
+
 <div class="cookiebar" id="cookieBar" role="dialog" aria-label="Cookie consent">
   <h4>Cookies in paradise</h4>
   <p>This site keeps things lean. We store one local preference to remember your cookie choice, and nothing tracks you for ads. Fonts load from Google Fonts, which may log your IP address. Read the <a href="cookies.html">Cookie Policy</a>.</p>
@@ -323,6 +344,6 @@
     <button class="btn ghost" id="cookieDecline" type="button">Decline</button>
   </div>
 </div>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

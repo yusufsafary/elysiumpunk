@@ -1,11 +1,19 @@
 /* ELYSIUM PUNKS - shared site script
    One file for every page. Each feature guards on element existence,
-   so pages only run what they contain. */
+   so pages only run what they contain.
+   Progressive enhancement: adding class "anim" to <html> is the very
+   first action. Every hidden pre-animation state in the CSS applies
+   only under html.anim, so without JS all content is simply visible. */
 (function () {
+  document.documentElement.classList.add("anim");
   "use strict";
 
   var reduced = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function each(list, fn) {
+    for (var i = 0; i < list.length; i++) { fn(list[i], i); }
+  }
 
   /* ---------- scroll progress hairline ---------- */
   var prog = document.getElementById("scrollProgress");
@@ -18,6 +26,20 @@
     };
     document.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+  }
+
+  /* ---------- hero entrance choreography ---------- */
+  var hiEls = document.querySelectorAll(".hi");
+  if (hiEls.length) {
+    if (reduced) {
+      each(hiEls, function (el) { el.classList.add("in"); });
+    } else {
+      setTimeout(function () {
+        requestAnimationFrame(function () {
+          each(hiEls, function (el) { el.classList.add("in"); });
+        });
+      }, 30);
+    }
   }
 
   /* ---------- hero marquee ---------- */
@@ -91,23 +113,187 @@
     }
   }
 
-  /* ---------- reveal on scroll ---------- */
-  var rvEls = document.querySelectorAll(".rv");
-  if (rvEls.length) {
+  /* ---------- reveal on scroll (shared observer) ---------- */
+  function observeVis(els) {
+    if (!els.length) { return; }
     if (reduced || !("IntersectionObserver" in window)) {
-      for (var k = 0; k < rvEls.length; k++) { rvEls[k].classList.add("vis"); }
+      each(els, function (el) { el.classList.add("vis"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("vis");
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: "0px 0px 20% 0px" });
+    each(els, function (el) { io.observe(el); });
+  }
+  observeVis(document.querySelectorAll(".rv"));
+  observeVis(document.querySelectorAll("section.blk h2"));
+
+  /* ---------- stat strip counters ---------- */
+  var statsBox = document.querySelector(".stats");
+  if (statsBox) {
+    var statEls = statsBox.querySelectorAll(".stat");
+    var counters = statsBox.querySelectorAll("b[data-count]");
+    var counted = false;
+    function runStats() {
+      if (counted) { return; }
+      counted = true;
+      each(statEls, function (el) { el.classList.add("vis"); });
+      if (reduced) { return; }
+      each(counters, function (el) {
+        var target = parseInt(el.getAttribute("data-count"), 10);
+        if (!target) { return; }
+        var dur = 1200;
+        var start = null;
+        function frame(ts) {
+          if (!start) { start = ts; }
+          var t = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(target * eased).toLocaleString("en-US");
+          if (t < 1) {
+            requestAnimationFrame(frame);
+          } else {
+            el.textContent = target.toLocaleString("en-US");
+          }
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+    if (reduced || !("IntersectionObserver" in window)) {
+      runStats();
     } else {
-      var io = new IntersectionObserver(function (entries) {
+      var sio = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (en.isIntersecting) {
-            en.target.classList.add("vis");
-            io.unobserve(en.target);
+            runStats();
+            sio.disconnect();
           }
         });
-      }, { threshold: 0.05, rootMargin: "0px 0px 20% 0px" });
-      rvEls.forEach(function (el) { io.observe(el); });
+      }, { threshold: 0.2 });
+      sio.observe(statsBox);
     }
   }
+
+  /* ---------- gallery filter chips ---------- */
+  var chips = document.querySelectorAll(".fchip[data-filter]");
+  var tiles = document.querySelectorAll(".gallery figure[data-type]");
+  if (chips.length && tiles.length) {
+    each(chips, function (chip) {
+      chip.addEventListener("click", function () {
+        each(chips, function (c) { c.classList.toggle("on", c === chip); });
+        var f = chip.getAttribute("data-filter");
+        each(tiles, function (tile) {
+          var show = f === "all" || tile.getAttribute("data-type") === f;
+          if (show) {
+            tile.style.display = "";
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                tile.classList.remove("tile-out");
+              });
+            });
+          } else {
+            tile.classList.add("tile-out");
+            setTimeout(function () {
+              if (tile.classList.contains("tile-out")) {
+                tile.style.display = "none";
+              }
+            }, 260);
+          }
+        });
+      });
+    });
+  }
+
+  /* ---------- lightbox ---------- */
+  var lb = document.getElementById("lightbox");
+  if (lb) {
+    var TYPES = {
+      mortal: {
+        name: "Mortal", share: "About 70% of the collection",
+        desc: "The street, untouched. Human skin, human trouble, full attitude. Most punks arrive as they lived."
+      },
+      blessed: {
+        name: "Blessed", share: "About 27% of the collection",
+        desc: "Touched by the fields. A halo or a laurel marks the ones paradise noticed on the way in."
+      },
+      saint: {
+        name: "Saint", share: "About 3% of the collection",
+        desc: "Golden skin, floating halo, full canonisation. The rarest faces in paradise, and the loudest."
+      }
+    };
+    var lbImg = document.getElementById("lbImg");
+    var lbType = document.getElementById("lbType");
+    var lbShare = document.getElementById("lbShare");
+    var lbDesc = document.getElementById("lbDesc");
+    var lbSeed = document.getElementById("lbSeed");
+    var lbClose = document.getElementById("lbClose");
+    var lbBackdrop = document.getElementById("lbBackdrop");
+    var lastFocus = null;
+    var prevOverflow = "";
+
+    function openLb(type, src, seedLabel) {
+      var d = TYPES[type];
+      if (!d || !lbImg) { return; }
+      lbImg.src = src;
+      lbImg.alt = d.name + " punk sample face";
+      if (lbType) { lbType.textContent = d.name; }
+      if (lbShare) { lbShare.textContent = d.share; }
+      if (lbDesc) { lbDesc.textContent = d.desc; }
+      if (lbSeed) { lbSeed.textContent = seedLabel || ""; }
+      lastFocus = document.activeElement;
+      prevOverflow = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = "hidden";
+      lb.hidden = false;
+      if (lbClose) { lbClose.focus(); }
+    }
+    function closeLb() {
+      lb.hidden = true;
+      document.documentElement.style.overflow = prevOverflow;
+      if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+    }
+    if (lbClose) { lbClose.addEventListener("click", closeLb); }
+    if (lbBackdrop) { lbBackdrop.addEventListener("click", closeLb); }
+    document.addEventListener("keydown", function (e) {
+      if (!lb.hidden && (e.key === "Escape" || e.key === "Esc")) { closeLb(); }
+    });
+
+    each(tiles, function (fig) {
+      function open() {
+        var img = fig.querySelector("img");
+        openLb(fig.getAttribute("data-type"), img ? img.getAttribute("src") : "", "Sample face");
+      }
+      fig.addEventListener("click", open);
+      fig.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+
+    each(document.querySelectorAll(".typecard"), function (card) {
+      var img = card.querySelector("img");
+      var h3 = card.querySelector("h3");
+      if (!img || !h3) { return; }
+      var type = h3.textContent.replace(/\s+/g, " ").trim().toLowerCase();
+      if (!TYPES[type]) { return; }
+      img.addEventListener("click", function () {
+        openLb(type, img.getAttribute("src"), "");
+      });
+    });
+  }
+
+  /* ---------- safety net: nothing stays hidden ---------- */
+  setTimeout(function () {
+    each(document.querySelectorAll(".hi:not(.in)"), function (el) { el.classList.add("in"); });
+    each(document.querySelectorAll(".rv:not(.vis)"), function (el) { el.classList.add("vis"); });
+    each(document.querySelectorAll("section.blk h2:not(.vis)"), function (el) { el.classList.add("vis"); });
+    each(document.querySelectorAll(".stat:not(.vis)"), function (el) { el.classList.add("vis"); });
+  }, 1200);
 
   /* ---------- back to top ---------- */
   var toTop = document.getElementById("toTop");
